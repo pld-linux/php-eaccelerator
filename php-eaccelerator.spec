@@ -11,9 +11,9 @@ Epoch:		0
 License:	GPL
 Vendor:		Turck Software
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/eaccelerator/%{_pkgname}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/%{_pkgname}-%{version}.tar.gz
 # Source0-md5:	e9059ebd49f14835534a1d96a97ababd
-URL:		http://eaccelerator.sourceforge.net/
+URL:		http://eaccelerator.net/
 BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	php-devel >= 3:5.0.0

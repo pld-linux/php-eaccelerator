@@ -11,7 +11,7 @@ Epoch:		0
 License:	GPL
 Group:		Libraries
 Vendor:		Turck Software
-Source0:	http://dl.sourceforge.net/%{_pkgname}/%{_pkgname}-%{version}.tar.gz
+Source0:	http://osdn.sourceforge.net/%{_pkgname}/%{_pkgname}-%{version}.tar.gz
 # Source0-md5:	638c9949ea9d7254127aac9504c07013
 URL:		http://eaccelerator.sourceforge.net
 BuildRequires:	automake

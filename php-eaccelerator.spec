@@ -9,14 +9,14 @@ Version:	0.9.1
 Release:	1
 Epoch:		0
 License:	GPL
-Group:		Libraries
 Vendor:		Turck Software
-Source0:	http://osdn.dl.sourceforge.net/%{_pkgname}/%{_pkgname}-%{version}.tar.gz
+Group:		Libraries
+Source0:	http://osdn.dl.sourceforge.net/eaccelerator/%{_pkgname}-%{version}.tar.gz
 # Source0-md5:	638c9949ea9d7254127aac9504c07013
-URL:		http://eaccelerator.sourceforge.net
+URL:		http://eaccelerator.sourceforge.net/
 BuildRequires:	automake
-BuildRequires:	php-devel >= 4.1
 BuildRequires:	libtool
+BuildRequires:	php-devel >= 4.1
 Requires:	apache >= 1.3
 Requires:	php = %{php_ver}
 Requires:	php-zlib
@@ -32,6 +32,12 @@ eAccelerator is a further development from mmcache PHP Accelerator &
 Encoder. It increases performance of PHP scripts by caching them in
 compiled state, so that the overhead of compiling is almost completely
 eliminated.
+
+%description -l pl
+eAccelerator to dalsze stadium rozwoju akceleratora i kodera PHP
+mmcache. Zwiêksza wydajno¶æ skryptów PHP poprzez zapamiêtywanie ich w
+postaci skompilowanej, dziêki czemu narzut potrzebny na kompilacjê
+jest prawie ca³kowicie wyeliminowany.
 
 %prep
 %setup -q -n %{_pkgname}

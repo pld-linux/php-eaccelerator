@@ -28,10 +28,10 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		extensionsdir	%{_libdir}/php
 
 %description
-eAccelerator is a further development from mmcache 
-PHP Accelerator & Encoder. It increases performance 
-of PHP scripts by caching them in compiled state, 
-so that the overhead of compiling is almost completely eliminated.
+eAccelerator is a further development from mmcache PHP Accelerator &
+Encoder. It increases performance of PHP scripts by caching them in
+compiled state, so that the overhead of compiling is almost completely
+eliminated.
 
 %prep
 %setup -q -n %{_pkgname}
@@ -62,7 +62,6 @@ rm -rf $RPM_BUILD_ROOT
 if [ "$1" = "0" ]; then
 	%{_sbindir}/php-module-install remove eaccelerator %{_sysconfdir}/php.ini
 fi
-
 
 %files
 %defattr(644,root,root,755)

@@ -5,22 +5,21 @@
 Summary:	eAccelerator module for PHP
 Summary(pl):	Modu³ eAccelerator dla PHP
 Name:		php-%{_name}
-Version:	0.9.1
+Version:	0.9.2a
 Release:	1
 Epoch:		0
 License:	GPL
 Vendor:		Turck Software
 Group:		Libraries
 Source0:	http://osdn.dl.sourceforge.net/eaccelerator/%{_pkgname}-%{version}.tar.gz
-# Source0-md5:	638c9949ea9d7254127aac9504c07013
+# Source0-md5:	e9059ebd49f14835534a1d96a97ababd
 URL:		http://eaccelerator.sourceforge.net/
 BuildRequires:	automake
 BuildRequires:	libtool
-BuildRequires:	php-devel >= 4.1
-Requires:	apache >= 1.3
+BuildRequires:	php-devel >= 3:5.0.0
 Requires:	php = %{php_ver}
 Requires:	php-zlib
-Requires(post,preun):	php-common >= 4.1
+Requires(post,preun):	php-common >= 3:5.0.0
 Conflicts:	php-mmcache
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 

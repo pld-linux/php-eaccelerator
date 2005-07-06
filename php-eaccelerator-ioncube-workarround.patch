@@ -1,0 +1,10 @@
+--- eaccelerator-0.9.3/eaccelerator.c	2005-05-11 09:19:10.000000000 +0100
++++ eaccelerator.c	2005-05-27 12:05:06.000000000 +0100
+@@ -4337,6 +4337,7 @@
+       } else if (strcmp(ext->name, "pcntl") == 0) {
+       } else if (strcmp(ext->name, "DBG") == 0) {
+       } else if (strcmp(ext->name, "Xdebug") == 0) {
++      } else if (strcmp(ext->name, "the ionCube PHP Loader") == 0) {
+       } else if (strcmp(ext->name, "Advanced PHP Debugger (APD)") == 0) {
+       } else if (strcmp(ext->name, "Zend Extension Manager") == 0 ||
+                  strcmp(ext->name, "Zend Optimizer") == 0) {

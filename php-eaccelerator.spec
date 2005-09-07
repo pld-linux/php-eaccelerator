@@ -42,7 +42,6 @@ jest prawie ca³kowicie wyeliminowany.
 
 %build
 phpize
-%{__aclocal}
 %configure \
 	--enable-mmcache=shared \
 	--with-php-config=%{_bindir}/php-config

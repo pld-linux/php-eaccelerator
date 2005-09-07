@@ -14,7 +14,6 @@ Group:		Libraries
 Source0:	http://dl.sourceforge.net/eaccelerator/%{_pkgname}-%{version}.tar.gz
 # Source0-md5:	b17ddf953f18ee6df5c2c24ffccb37d9
 URL:		http://eaccelerator.net/
-BuildRequires:	automake
 BuildRequires:	libtool
 BuildRequires:	php-devel >= 3:5.0.0
 Requires:	php = %{php_ver}

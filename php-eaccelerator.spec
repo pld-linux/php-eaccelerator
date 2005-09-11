@@ -64,7 +64,7 @@ Wiêcej informacji mo¿na znale¼æ %{url}.
 %build
 phpize
 %configure \
-	--enable-mmcache=shared \
+	--enable-eaccelerator=shared \
 	--with-php-config=%{_bindir}/php-config
 %{__make}
 

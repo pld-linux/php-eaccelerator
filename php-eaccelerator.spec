@@ -36,16 +36,16 @@ postaci skompilowanej, dziêki czemu narzut potrzebny na kompilacjê
 jest prawie ca³kowicie wyeliminowany.
 
 %package webinterface
-Summary:    WEB interface for PHP Accelerator
-Summary(pl):    Interfejs WEB dla PHP Accelerator
-Group:      Libraries
-Requires:   %{name} = %{epoch}:%{version}-%{release}
+Summary:	WEB interface for PHP Accelerator
+Summary(pl):	Interfejs WWW dla PHP Acceleratora
+Group:		Libraries
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description webinterface
-PHP Accelerator can be managed through web interface script mmcache.php.
-So you need to put this file on your web site. For security reasons it
-is recommended to restrict the usage of this script by your local IP and
-setup password based access.
+PHP Accelerator can be managed through web interface script
+eaccelerator.php. So you need to put this file on your web site. For
+security reasons it is recommended to restrict the usage of this
+script by your local IP and setup password based access.
 
 More information you can find at %{url}.
 
@@ -54,9 +54,9 @@ PHP Accelerator mo¿e byæ sterowany ze strony internetowej z
 wykorzystaniem skryptu eaccelerator.php. Jedyne co trzeba zrobiæ, to
 umie¶ciæ plik we w³a¶ciwym miejscu na stronie internetowej. Z powodów
 bezpieczeñstwa zalecane jest, aby ograniczyæ korzystanie ze skryptu do
-lokalnego adresu i ustawiæ autoryzacjê has³em
+lokalnego adresu i ustawiæ autoryzacjê has³em.
 
-Wiêcej informacji mo¿na znale¼æ %{url}.
+Wiêcej informacji mo¿na znale¼æ pod %{url}.
 
 %prep
 %setup -q -n %{_pkgname}-%{version}

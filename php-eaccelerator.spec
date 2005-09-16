@@ -19,8 +19,8 @@ URL:		http://eaccelerator.net/
 BuildRequires:	php-devel >= 3:5.0.0
 BuildRequires:	rpmbuild(macros) >= 1.238
 %{?requires_php_extension}
-Requires:	php-zlib
 Requires:	%{_sysconfdir}/conf.d
+Requires:	php-zlib
 Conflicts:	php-mmcache
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -77,7 +77,6 @@ install ./modules/eaccelerator.so $RPM_BUILD_ROOT%{extensionsdir}
 install ./encoder.php $RPM_BUILD_ROOT%{_bindir}
 install ./eaccelerator_password.php $RPM_BUILD_ROOT%{_bindir}
 install ./eaccelerator.php $RPM_BUILD_ROOT%{_bindir}
-
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/conf.d/%{_name}.ini
 
 %clean

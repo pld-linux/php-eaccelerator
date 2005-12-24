@@ -15,6 +15,7 @@ Group:		Libraries
 Source0:	http://dl.sourceforge.net/eaccelerator/%{_pkgname}-%{version}.tar.gz
 # Source0-md5:	b17ddf953f18ee6df5c2c24ffccb37d9
 Source1:	%{_name}.ini
+Patch0:		%{name}-php51.patch
 URL:		http://eaccelerator.net/
 BuildRequires:	php-devel >= 3:5.0.0
 BuildRequires:	rpmbuild(macros) >= 1.238
@@ -61,6 +62,7 @@ Wiêcej informacji mo¿na znale¼æ pod %{url}.
 
 %prep
 %setup -q -n %{_pkgname}-%{version}
+%patch0 -p1
 
 %build
 phpize

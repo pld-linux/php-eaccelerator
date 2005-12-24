@@ -7,7 +7,7 @@ Summary:	eAccelerator module for PHP
 Summary(pl):	Modu³ eAccelerator dla PHP
 Name:		php-%{_name}
 Version:	0.9.3
-Release:	2
+Release:	3
 Epoch:		0
 License:	GPL
 Vendor:		Turck Software

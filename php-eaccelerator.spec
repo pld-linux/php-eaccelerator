@@ -6,15 +6,16 @@
 Summary:	eAccelerator module for PHP
 Summary(pl):	Modu³ eAccelerator dla PHP
 Name:		php-%{_name}
-Version:	0.9.3
-Release:	3
+Version:	0.9.4
+Release:	0.rc1.1
 Epoch:		0
 License:	GPL
 Vendor:		Turck Software
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/eaccelerator/%{_pkgname}-%{version}.tar.gz
-# Source0-md5:	b17ddf953f18ee6df5c2c24ffccb37d9
+Source0:	http://dl.sourceforge.net/eaccelerator/%{_pkgname}-%{version}-rc1.tar.bz2
+# Source0-md5:	5910ba3c3e9c8caa97600e950839f8b2
 Source1:	%{_name}.ini
+# Taken from http://home.parse.nl/~hans/eaccel/eaccel-php51-patch-29122005.diff
 Patch0:		%{name}-php51.patch
 URL:		http://eaccelerator.net/
 BuildRequires:	php-devel >= 3:5.0.0
@@ -61,7 +62,7 @@ lokalnego adresu i ustawiæ autoryzacjê has³em.
 Wiêcej informacji mo¿na znale¼æ pod %{url}.
 
 %prep
-%setup -q -n %{_pkgname}-%{version}
+%setup -q -n %{_pkgname}-%{version}-rc1
 %patch0 -p1
 
 %build

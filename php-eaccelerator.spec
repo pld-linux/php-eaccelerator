@@ -7,7 +7,7 @@ Summary:	eAccelerator module for PHP
 Summary(pl):	Modu³ eAccelerator dla PHP
 Name:		php-%{_name}
 Version:	0.9.4
-Release:	0.rc1.1
+Release:	0.rc1.2
 Epoch:		0
 License:	GPL
 Vendor:		Turck Software
@@ -21,6 +21,7 @@ URL:		http://eaccelerator.net/
 BuildRequires:	php-devel >= 3:5.0.0
 BuildRequires:	rpmbuild(macros) >= 1.238
 %{?requires_php_extension}
+%requires_eq	php-common
 Requires:	%{_sysconfdir}/conf.d
 Requires:	php-zlib
 Conflicts:	php-mmcache

@@ -3,15 +3,15 @@
 %define		_sysconfdir	/etc/php
 %define		extensionsdir	%(php-config --extension-dir 2>/dev/null)
 %define		_rc		beta1
-
+%define		_rel 2
+#
 Summary:	eAccelerator module for PHP
 Summary(pl):	Modu³ eAccelerator dla PHP
 Name:		php-%{_name}
 Version:	0.9.5
-Release:	0.%{_rc}.1
+Release:	0.%{_rc}.%{_rel}
 Epoch:		0
 License:	GPL
-Vendor:		Turck Software
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/eaccelerator/%{_pkgname}-%{version}-%{_rc}.tar.bz2
 # Source0-md5:	29f68a5975c1a09dbd72c9e8ddd534a7
@@ -20,7 +20,6 @@ URL:		http://eaccelerator.net/
 BuildRequires:	php-devel >= 3:5.0.0
 BuildRequires:	rpmbuild(macros) >= 1.238
 %{?requires_php_extension}
-%requires_eq	php-common
 Requires:	%{_sysconfdir}/conf.d
 Requires:	php-zlib
 Conflicts:	php-mmcache

@@ -2,8 +2,8 @@
 %define		_pkgname	eaccelerator
 %define		_sysconfdir	/etc/php
 %define		extensionsdir	%(php-config --extension-dir 2>/dev/null)
-%define		_rc		beta1
-%define		_rel 3
+%define		_rc		beta2
+%define		_rel 1
 #
 Summary:	eAccelerator module for PHP
 Summary(pl):	Modu³ eAccelerator dla PHP
@@ -14,7 +14,7 @@ Epoch:		0
 License:	GPL
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/eaccelerator/%{_pkgname}-%{version}-%{_rc}.tar.bz2
-# Source0-md5:	29f68a5975c1a09dbd72c9e8ddd534a7
+# Source0-md5:	2516b680ce372765d24e7b64003f1e64
 Source1:	%{_name}.ini
 URL:		http://eaccelerator.net/
 BuildRequires:	php-devel >= 3:5.0.0
@@ -77,9 +77,10 @@ install -d $RPM_BUILD_ROOT{%{extensionsdir},%{_bindir},%{_sysconfdir}/conf.d,/va
 
 install ./modules/eaccelerator.so $RPM_BUILD_ROOT%{extensionsdir}
 install ./encoder.php $RPM_BUILD_ROOT%{_bindir}
-install ./eaccelerator_password.php $RPM_BUILD_ROOT%{_bindir}
-install ./eaccelerator.php $RPM_BUILD_ROOT%{_bindir}
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/conf.d/%{_name}.ini
+
+install -d $RPM_BUILD_ROOT/home/services/httpd/html/eaccelerator
+cp -a doc/php/* $RPM_BUILD_ROOT/home/services/httpd/html/eaccelerator
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -110,5 +111,4 @@ fi
 
 %files webinterface
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/eaccelerator.php
-%attr(755,root,root) %{_bindir}/eaccelerator_password.php
+/home/services/httpd/html/eaccelerator

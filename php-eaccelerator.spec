@@ -19,6 +19,7 @@ Source1:	%{_name}.ini
 URL:		http://eaccelerator.net/
 BuildRequires:	php-devel >= 3:5.0.0
 BuildRequires:	rpmbuild(macros) >= 1.238
+%requires_eq	php-common
 %{?requires_php_extension}
 Requires:	%{_sysconfdir}/conf.d
 Requires:	php-zlib

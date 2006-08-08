@@ -6,7 +6,7 @@
 %define		_sysconfdir	/etc/php
 %define		extensionsdir	%(php-config --extension-dir 2>/dev/null)
 %define		_rc		rc1
-%define		_rel		0.1
+%define		_rel		1
 #
 Summary:	eAccelerator module for PHP
 Summary(pl):	Modu³ eAccelerator dla PHP
@@ -77,7 +77,7 @@ phpize
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{extensionsdir},%{_bindir},%{_sysconfdir}/conf.d,/var/cache/%{_name}}
+install -d $RPM_BUILD_ROOT{%{extensionsdir},%{_bindir},%{_sysconfdir}/conf.d,/var/cache/%{_name},/etc/tmpwatch}
 
 install ./modules/eaccelerator.so $RPM_BUILD_ROOT%{extensionsdir}
 install ./encoder.php $RPM_BUILD_ROOT%{_bindir}
@@ -85,6 +85,8 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/conf.d/%{_name}.ini
 
 install -d $RPM_BUILD_ROOT/home/services/httpd/html/eaccelerator
 cp -a doc/php/* $RPM_BUILD_ROOT/home/services/httpd/html/eaccelerator
+
+echo "/var/cache/%{_name} 720" > $RPM_BUILD_ROOT/etc/tmpwatch/%{name}.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -109,6 +111,7 @@ fi
 %defattr(644,root,root,755)
 %doc README
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/conf.d/%{_name}.ini
+%attr(644,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/tmpwatch/%{name}.conf
 %attr(755,root,root) %{extensionsdir}/eaccelerator.so
 %attr(755,root,root) %{_bindir}/encoder.php
 %attr(770,root,http) /var/cache/%{_name}

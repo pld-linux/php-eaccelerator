@@ -1,9 +1,12 @@
+# TODO:
+# - move php files to webapps framework
+#
 %define		_name		eaccelerator
 %define		_pkgname	eaccelerator
 %define		_sysconfdir	/etc/php
 %define		extensionsdir	%(php-config --extension-dir 2>/dev/null)
-%define		_rc		beta2
-%define		_rel 1
+%define		_rc		rc1
+%define		_rel		0.1
 #
 Summary:	eAccelerator module for PHP
 Summary(pl):	Modu³ eAccelerator dla PHP
@@ -14,7 +17,7 @@ Epoch:		0
 License:	GPL
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/eaccelerator/%{_pkgname}-%{version}-%{_rc}.tar.bz2
-# Source0-md5:	2516b680ce372765d24e7b64003f1e64
+# Source0-md5:	5d03deb399f8f857d92dd092a2c69a87
 Source1:	%{_name}.ini
 URL:		http://eaccelerator.net/
 BuildRequires:	php-devel >= 3:5.0.0

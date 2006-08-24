@@ -6,7 +6,7 @@
 %define		_sysconfdir	/etc/php
 %define		extensionsdir	%(php-config --extension-dir 2>/dev/null)
 %define		_rc		rc1
-%define		_rel		2
+%define		_rel		3
 #
 Summary:	eAccelerator module for PHP
 Summary(pl):	Modu³ eAccelerator dla PHP
@@ -104,7 +104,7 @@ fi
 %preun
 if [ "$1" = 0 ]; then
 	# remove last pieces of cache
-	rm -f /var/cache/%{_name}/*
+	rm -rf /var/cache/%{_name}/*
 fi
 
 %files

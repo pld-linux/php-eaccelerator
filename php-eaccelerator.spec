@@ -65,7 +65,7 @@ lokalnego adresu i ustawiæ autoryzacjê has³em.
 Wiêcej informacji mo¿na znale¼æ pod %{url}.
 
 %prep
-%setup -q -n %{_pkgname}-%{version}-%{_rc}
+%setup -q -n %{_pkgname}-%{version}
 
 %build
 phpize

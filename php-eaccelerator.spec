@@ -6,18 +6,18 @@
 %define		_sysconfdir	/etc/php
 %define		extensionsdir	%(php-config --extension-dir 2>/dev/null)
 %define		_rc		rc1
-%define		_rel		5
+%define		_rel		0.1
 #
 Summary:	eAccelerator module for PHP
 Summary(pl):	Modu³ eAccelerator dla PHP
 Name:		php-%{_name}
 Version:	0.9.5
-Release:	0.%{_rc}.%{_rel}
+Release:	%{_rel}
 Epoch:		0
 License:	GPL
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/eaccelerator/%{_pkgname}-%{version}-%{_rc}.tar.bz2
-# Source0-md5:	5d03deb399f8f857d92dd092a2c69a87
+Source0:	http://dl.sourceforge.net/eaccelerator/%{_pkgname}-%{version}.tar.bz2
+# Source0-md5:	dad54af67488b83a2af6e30f661f613b
 Source1:	%{_name}.ini
 URL:		http://eaccelerator.net/
 BuildRequires:	php-devel >= 3:5.0.0

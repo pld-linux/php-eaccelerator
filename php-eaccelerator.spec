@@ -6,7 +6,7 @@
 %define		_sysconfdir	/etc/php
 %define		extensionsdir	%(php-config --extension-dir 2>/dev/null)
 %define		_rc		rc1
-%define		_rel		4
+%define		_rel		5
 #
 Summary:	eAccelerator module for PHP
 Summary(pl):	Modu³ eAccelerator dla PHP
@@ -71,6 +71,9 @@ Wiêcej informacji mo¿na znale¼æ pod %{url}.
 phpize
 %configure \
 	--enable-eaccelerator=shared \
+	--with-eaccelerator-shared-memory \
+	--with-eaccelerator-sessions \
+	--with-eaccelerator-content-caching \
 	--with-eaccelerator-userid=http \
 	--with-php-config=%{_bindir}/php-config
 %{__make}

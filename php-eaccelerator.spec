@@ -10,7 +10,7 @@ Summary:	eAccelerator module for PHP
 Summary(pl):	Modu³ eAccelerator dla PHP
 Name:		php-%{_name}
 Version:	0.9.5
-Release:	2
+Release:	3
 Epoch:		0
 License:	GPL
 Group:		Libraries
@@ -23,7 +23,7 @@ BuildRequires:	rpmbuild(macros) >= 1.322
 %requires_eq	php-common
 %{?requires_php_extension}
 Requires:	%{_sysconfdir}/conf.d
-Requires:	php-zlib
+Requires:	php(zlib)
 Conflicts:	php-mmcache
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -112,7 +112,7 @@ fi
 %defattr(644,root,root,755)
 %doc README
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/conf.d/%{_name}.ini
-%attr(644,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/tmpwatch/%{name}.conf
+%config(noreplace) %verify(not md5 mtime size) /etc/tmpwatch/%{name}.conf
 %attr(755,root,root) %{extensionsdir}/eaccelerator.so
 %attr(755,root,root) %{_bindir}/encoder.php
 %attr(770,root,http) /var/cache/%{_name}

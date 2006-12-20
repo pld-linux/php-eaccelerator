@@ -1,0 +1,15 @@
+diff -urN eaccelerator-0.9.5.org/ea_restore.c eaccelerator-0.9.5/ea_restore.c
+--- eaccelerator-0.9.5.org/ea_restore.c	2006-10-11 14:45:52.000000000 +0200
++++ eaccelerator-0.9.5/ea_restore.c	2006-12-20 10:33:12.803415250 +0100
+@@ -714,7 +714,11 @@
+     to->doc_comment_len = 0;
+     to->doc_comment = NULL;
+ #endif
++#ifdef ZEND_ENGINE_2_2
++    to->ce = EAG(class_entry);
+ #endif
++#endif
++
+ 	return to;
+ }
+ #endif

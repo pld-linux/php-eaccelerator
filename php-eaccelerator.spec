@@ -10,13 +10,14 @@ Summary:	eAccelerator module for PHP
 Summary(pl):	Modu³ eAccelerator dla PHP
 Name:		php-%{_name}
 Version:	0.9.5
-Release:	4
+Release:	5
 Epoch:		0
 License:	GPL
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/eaccelerator/%{_pkgname}-%{version}.tar.bz2
 # Source0-md5:	dad54af67488b83a2af6e30f661f613b
 Source1:	%{_name}.ini
+Patch0:		%{name}-php5.2.patch
 URL:		http://eaccelerator.net/
 BuildRequires:	php-devel >= 3:5.0.0
 BuildRequires:	rpmbuild(macros) >= 1.322
@@ -64,6 +65,7 @@ Wiêcej informacji mo¿na znale¼æ pod %{url}.
 
 %prep
 %setup -q -n %{_pkgname}-%{version}
+%patch0 -p1
 
 %build
 phpize

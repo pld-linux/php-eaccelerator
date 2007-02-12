@@ -4,7 +4,7 @@
 %define		_name		eaccelerator
 %define		_pkgname	eaccelerator
 Summary:	eAccelerator module for PHP
-Summary(pl):	Modu³ eAccelerator dla PHP
+Summary(pl.UTF-8):   ModuÅ‚ eAccelerator dla PHP
 Name:		php-%{_name}
 Version:	0.9.5
 Release:	5
@@ -31,15 +31,15 @@ Encoder. It increases performance of PHP scripts by caching them in
 compiled state, so that the overhead of compiling is almost completely
 eliminated.
 
-%description -l pl
+%description -l pl.UTF-8
 eAccelerator to dalsze stadium rozwoju akceleratora i kodera PHP
-mmcache. Zwiêksza wydajno¶æ skryptów PHP poprzez zapamiêtywanie ich w
-postaci skompilowanej, dziêki czemu narzut potrzebny na kompilacjê
-jest prawie ca³kowicie wyeliminowany.
+mmcache. ZwiÄ™ksza wydajnoÅ›Ä‡ skryptÃ³w PHP poprzez zapamiÄ™tywanie ich w
+postaci skompilowanej, dziÄ™ki czemu narzut potrzebny na kompilacjÄ™
+jest prawie caÅ‚kowicie wyeliminowany.
 
 %package webinterface
 Summary:	WEB interface for PHP Accelerator
-Summary(pl):	Interfejs WWW dla PHP Acceleratora
+Summary(pl.UTF-8):   Interfejs WWW dla PHP Acceleratora
 Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -51,14 +51,14 @@ script by your local IP and setup password based access.
 
 More information you can find at %{url}.
 
-%description webinterface -l pl
-PHP Accelerator mo¿e byæ sterowany ze strony internetowej z
-wykorzystaniem skryptu eaccelerator.php. Jedyne co trzeba zrobiæ, to
-umie¶ciæ plik we w³a¶ciwym miejscu na stronie internetowej. Z powodów
-bezpieczeñstwa zalecane jest, aby ograniczyæ korzystanie ze skryptu do
-lokalnego adresu i ustawiæ autoryzacjê has³em.
+%description webinterface -l pl.UTF-8
+PHP Accelerator moÅ¼e byÄ‡ sterowany ze strony internetowej z
+wykorzystaniem skryptu eaccelerator.php. Jedyne co trzeba zrobiÄ‡, to
+umieÅ›ciÄ‡ plik we wÅ‚aÅ›ciwym miejscu na stronie internetowej. Z powodÃ³w
+bezpieczeÅ„stwa zalecane jest, aby ograniczyÄ‡ korzystanie ze skryptu do
+lokalnego adresu i ustawiÄ‡ autoryzacjÄ™ hasÅ‚em.
 
-Wiêcej informacji mo¿na znale¼æ pod %{url}.
+WiÄ™cej informacji moÅ¼na znaleÅºÄ‡ pod %{url}.
 
 %prep
 %setup -q -n %{_pkgname}-%{version}

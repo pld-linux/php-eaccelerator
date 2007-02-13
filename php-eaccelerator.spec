@@ -4,7 +4,7 @@
 %define		_name		eaccelerator
 %define		_pkgname	eaccelerator
 Summary:	eAccelerator module for PHP
-Summary(pl.UTF-8):   Moduł eAccelerator dla PHP
+Summary(pl.UTF-8):	Moduł eAccelerator dla PHP
 Name:		php-%{_name}
 Version:	0.9.5
 Release:	5
@@ -39,7 +39,7 @@ jest prawie całkowicie wyeliminowany.
 
 %package webinterface
 Summary:	WEB interface for PHP Accelerator
-Summary(pl.UTF-8):   Interfejs WWW dla PHP Acceleratora
+Summary(pl.UTF-8):	Interfejs WWW dla PHP Acceleratora
 Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 

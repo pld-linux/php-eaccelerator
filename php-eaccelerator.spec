@@ -3,26 +3,24 @@
 #
 %define		_name		eaccelerator
 %define		_pkgname	eaccelerator
-%define		_sysconfdir	/etc/php
-%define		extensionsdir	%(php-config --extension-dir 2>/dev/null)
-#
 Summary:	eAccelerator module for PHP
 Summary(pl):	Modu³ eAccelerator dla PHP
 Name:		php-%{_name}
 Version:	0.9.5
-Release:	4
+Release:	7
 Epoch:		0
 License:	GPL
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/eaccelerator/%{_pkgname}-%{version}.tar.bz2
 # Source0-md5:	dad54af67488b83a2af6e30f661f613b
 Source1:	%{_name}.ini
+Patch0:		%{name}-php5.2.patch
 URL:		http://eaccelerator.net/
 BuildRequires:	php-devel >= 3:5.0.0
-BuildRequires:	rpmbuild(macros) >= 1.322
+BuildRequires:	rpmbuild(macros) >= 1.344
 %requires_eq	php-common
 %{?requires_php_extension}
-Requires:	%{_sysconfdir}/conf.d
+Requires:	php-common >= 4:5.0.4
 Requires:	php(zlib)
 Conflicts:	php-mmcache
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -64,6 +62,7 @@ Wiêcej informacji mo¿na znale¼æ pod %{url}.
 
 %prep
 %setup -q -n %{_pkgname}-%{version}
+%patch0 -p1
 
 %build
 phpize
@@ -78,11 +77,11 @@ phpize
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{extensionsdir},%{_bindir},%{_sysconfdir}/conf.d,/var/cache/%{_name},/etc/tmpwatch}
+install -d $RPM_BUILD_ROOT{%{php_extensiondir},%{_bindir},%{php_sysconfdir}/conf.d,/var/cache/%{_name},/etc/tmpwatch}
 
-install ./modules/eaccelerator.so $RPM_BUILD_ROOT%{extensionsdir}
+install ./modules/eaccelerator.so $RPM_BUILD_ROOT%{php_extensiondir}
 install ./encoder.php $RPM_BUILD_ROOT%{_bindir}
-install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/conf.d/%{_name}.ini
+install %{SOURCE1} $RPM_BUILD_ROOT%{php_sysconfdir}/conf.d/%{_name}.ini
 
 install -d $RPM_BUILD_ROOT/home/services/httpd/html/eaccelerator
 cp -a doc/php/* $RPM_BUILD_ROOT/home/services/httpd/html/eaccelerator
@@ -93,13 +92,11 @@ echo "/var/cache/%{_name} 720" > $RPM_BUILD_ROOT/etc/tmpwatch/%{name}.conf
 rm -rf $RPM_BUILD_ROOT
 
 %post
-[ ! -f /etc/apache/conf.d/??_mod_php.conf ] || %service -q apache restart
-[ ! -f /etc/httpd/httpd.conf/??_mod_php.conf ] || %service -q httpd restart
+%php_webserver_restart
 
 %postun
 if [ "$1" = 0 ]; then
-	[ ! -f /etc/apache/conf.d/??_mod_php.conf ] || %service -q apache restart
-	[ ! -f /etc/httpd/httpd.conf/??_mod_php.conf ] || %service -q httpd restart
+	%php_webserver_restart
 fi
 
 %preun
@@ -111,9 +108,9 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc README
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/conf.d/%{_name}.ini
+%config(noreplace) %verify(not md5 mtime size) %{php_sysconfdir}/conf.d/%{_name}.ini
 %config(noreplace) %verify(not md5 mtime size) /etc/tmpwatch/%{name}.conf
-%attr(755,root,root) %{extensionsdir}/eaccelerator.so
+%attr(755,root,root) %{php_extensiondir}/eaccelerator.so
 %attr(755,root,root) %{_bindir}/encoder.php
 %attr(770,root,http) /var/cache/%{_name}
 

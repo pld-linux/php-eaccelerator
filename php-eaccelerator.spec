@@ -7,7 +7,7 @@ Summary:	eAccelerator module for PHP
 Summary(pl.UTF-8):	Moduł eAccelerator dla PHP
 Name:		php-%{_name}
 Version:	0.9.5
-Release:	8
+Release:	9
 Epoch:		0
 License:	GPL
 Group:		Libraries

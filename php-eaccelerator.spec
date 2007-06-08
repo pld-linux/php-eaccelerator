@@ -70,15 +70,22 @@ phpize
 	--with-eaccelerator-sessions \
 	--with-eaccelerator-content-caching \
 	--with-eaccelerator-userid=http \
-	--with-php-config=%{_bindir}/php-config
+	--with-php-config=%{_bindir}/php-config \
+	%{?debug:--with-eaccelerator-debug}
+%{__make}
+
+cd eLoader
+./autogen.sh
+%configure
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{php_extensiondir},%{_bindir},%{php_sysconfdir}/conf.d,/var/cache/%{_name},/etc/tmpwatch}
 
-install ./modules/eaccelerator.so $RPM_BUILD_ROOT%{php_extensiondir}
-install ./encoder.php $RPM_BUILD_ROOT%{_bindir}
+install modules/eaccelerator.so $RPM_BUILD_ROOT%{php_extensiondir}
+install eLoader/modules/eloader.so $RPM_BUILD_ROOT%{php_extensiondir}
+install encoder.php $RPM_BUILD_ROOT%{_bindir}
 install %{SOURCE1} $RPM_BUILD_ROOT%{php_sysconfdir}/conf.d/%{_name}.ini
 
 install -d $RPM_BUILD_ROOT/home/services/httpd/html/eaccelerator
@@ -105,10 +112,11 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc README
+%doc AUTHORS ChangeLog NEWS README README.eLoader
 %config(noreplace) %verify(not md5 mtime size) %{php_sysconfdir}/conf.d/%{_name}.ini
 %config(noreplace) %verify(not md5 mtime size) /etc/tmpwatch/%{name}.conf
 %attr(755,root,root) %{php_extensiondir}/eaccelerator.so
+%attr(755,root,root) %{php_extensiondir}/eloader.so
 %attr(755,root,root) %{_bindir}/encoder.php
 %attr(770,root,http) /var/cache/%{_name}
 

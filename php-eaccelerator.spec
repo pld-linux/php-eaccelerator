@@ -68,7 +68,8 @@ Więcej informacji można znaleźć pod %{url}.
 
 cat > apache.conf <<EOF
 Alias /%{_webapp} %{_appdir}
-<Directory /%{_appdir}>
+<Directory %{_appdir}/>
+	Order allow,deny
 	Allow from 127.0.0.1
 </Directory>
 EOF

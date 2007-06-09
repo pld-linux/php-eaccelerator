@@ -1,10 +1,6 @@
 #
 %define		_name		eaccelerator
 %define		_pkgname	eaccelerator
-%define		_webapps	/etc/webapps
-%define		_webapp		%{_name}
-%define		_sysconfdir	%{_webapps}/%{_webapp}
-%define		_appdir		%{_datadir}/%{name}
 Summary:	eAccelerator module for PHP
 Summary(pl.UTF-8):	Moduł eAccelerator dla PHP
 Name:		php-%{_name}
@@ -21,10 +17,15 @@ BuildRequires:	php-devel >= 3:5.0.0
 BuildRequires:	rpmbuild(macros) >= 1.344
 %requires_eq	php-common
 %{?requires_php_extension}
-Requires:	php-common >= 4:5.0.4
 Requires:	php(zlib)
+Requires:	php-common >= 4:5.0.4
 Conflicts:	php-mmcache
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_webapps	/etc/webapps
+%define		_webapp		%{_name}
+%define		_sysconfdir	%{_webapps}/%{_webapp}
+%define		_appdir		%{_datadir}/%{_webapp}
 
 %description
 eAccelerator is a further development from mmcache PHP Accelerator &
@@ -34,17 +35,17 @@ eliminated.
 
 %description -l pl.UTF-8
 eAccelerator to dalsze stadium rozwoju akceleratora i kodera PHP
-mmcache. Zwiększa wydajność skryptów PHP poprzez zapamiętywanie ich w
-postaci skompilowanej, dzięki czemu narzut potrzebny na kompilację
-jest prawie całkowicie wyeliminowany.
+mmcache. Zwiększa wydajność skryptów PHP poprzez zapamiętywanie
+ich w postaci skompilowanej, dzięki czemu narzut potrzebny na
+kompilację jest prawie całkowicie wyeliminowany.
 
 %package webinterface
 Summary:	WEB interface for PHP Accelerator
 Summary(pl.UTF-8):	Interfejs WWW dla PHP Acceleratora
 Group:		Libraries
+Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	webapps
 Requires:	webserver(php)
-Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description webinterface
 PHP Accelerator can be managed through web interface script

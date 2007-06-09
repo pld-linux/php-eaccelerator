@@ -1,8 +1,10 @@
-# TODO:
-# - move php files to webapps framework
 #
 %define		_name		eaccelerator
 %define		_pkgname	eaccelerator
+%define		_webapps	/etc/webapps
+%define		_webapp		%{name}
+%define		_sysconfdir	%{_webapps}/%{_webapp}
+%define		_appdir		%{_datadir}/%{name}
 Summary:	eAccelerator module for PHP
 Summary(pl.UTF-8):	Moduł eAccelerator dla PHP
 Name:		php-%{_name}
@@ -40,6 +42,8 @@ jest prawie całkowicie wyeliminowany.
 Summary:	WEB interface for PHP Accelerator
 Summary(pl.UTF-8):	Interfejs WWW dla PHP Acceleratora
 Group:		Libraries
+Requires:	webapps
+Requires:	webserver(php)
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description webinterface
@@ -62,6 +66,13 @@ Więcej informacji można znaleźć pod %{url}.
 %prep
 %setup -q -n %{_pkgname}-%{version}
 
+cat > apache.conf <<EOF
+Alias /%{name} %{_appdir}
+<Directory /%{name}>
+	Allow from 127.0.0.1
+</Directory>
+EOF
+
 %build
 phpize
 %configure \
@@ -81,20 +92,33 @@ cd eLoader
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{php_extensiondir},%{_bindir},%{php_sysconfdir}/conf.d,/var/cache/%{_name},/etc/tmpwatch}
+install -d $RPM_BUILD_ROOT{%{php_extensiondir},%{_bindir},%{php_sysconfdir}/conf.d,/var/cache/%{_name},%{_sysconfdir},%{_appdir},/etc/tmpwatch}
 
 install modules/eaccelerator.so $RPM_BUILD_ROOT%{php_extensiondir}
 install eLoader/modules/eloader.so $RPM_BUILD_ROOT%{php_extensiondir}
 install encoder.php $RPM_BUILD_ROOT%{_bindir}
 install %{SOURCE1} $RPM_BUILD_ROOT%{php_sysconfdir}/conf.d/%{_name}.ini
 
-install -d $RPM_BUILD_ROOT/home/services/httpd/html/eaccelerator
-cp -a doc/php/* $RPM_BUILD_ROOT/home/services/httpd/html/eaccelerator
+cp -a doc/php/* $RPM_BUILD_ROOT%{_appdir}
+install apache.conf $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
+install apache.conf $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
 
 echo "/var/cache/%{_name} 720" > $RPM_BUILD_ROOT/etc/tmpwatch/%{name}.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%triggerin webinterface -- apache1 < 1.3.37-3, apache1-base
+%webapp_register apache %{_webapp}
+
+%triggerun webinterface -- apache1 < 1.3.37-3, apache1-base
+%webapp_unregister apache %{_webapp}
+
+%triggerin webinterface -- apache < 2.2.0, apache-base
+%webapp_register httpd %{_webapp}
+
+%triggerun webinterface -- apache < 2.2.0, apache-base
+%webapp_unregister httpd %{_webapp}
 
 %post
 %php_webserver_restart
@@ -122,4 +146,7 @@ fi
 
 %files webinterface
 %defattr(644,root,root,755)
-/home/services/httpd/html/eaccelerator
+%dir %attr(750,root,http) %{_sysconfdir}
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/apache.conf
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf
+%{_appdir}

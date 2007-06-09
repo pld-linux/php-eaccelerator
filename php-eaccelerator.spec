@@ -99,7 +99,7 @@ install eLoader/modules/eloader.so $RPM_BUILD_ROOT%{php_extensiondir}
 install encoder.php $RPM_BUILD_ROOT%{_bindir}
 install %{SOURCE1} $RPM_BUILD_ROOT%{php_sysconfdir}/conf.d/%{_name}.ini
 
-cp -a doc/php/* $RPM_BUILD_ROOT%{_appdir}
+cp -a {PHP_Highlight,control,dasm}.php $RPM_BUILD_ROOT%{_appdir}
 install apache.conf $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
 install apache.conf $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
 
@@ -136,7 +136,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README README.eLoader
+%doc AUTHORS ChangeLog NEWS README README.eLoader bugreport.php doc/php
 %config(noreplace) %verify(not md5 mtime size) %{php_sysconfdir}/conf.d/%{_name}.ini
 %config(noreplace) %verify(not md5 mtime size) /etc/tmpwatch/%{name}.conf
 %attr(755,root,root) %{php_extensiondir}/eaccelerator.so

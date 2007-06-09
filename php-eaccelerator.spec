@@ -48,18 +48,18 @@ Requires:	%{name} = %{epoch}:%{version}-%{release}
 
 %description webinterface
 PHP Accelerator can be managed through web interface script
-eaccelerator.php. So you need to put this file on your web site. For
-security reasons it is recommended to restrict the usage of this
+control.php and dasm.php (which requires disassembler and tokenizer).
+For security reasons it is recommended to restrict the usage of this
 script by your local IP and setup password based access.
 
 More information you can find at %{url}.
 
 %description webinterface -l pl.UTF-8
 PHP Accelerator może być sterowany ze strony internetowej z
-wykorzystaniem skryptu eaccelerator.php. Jedyne co trzeba zrobić, to
-umieścić plik we właściwym miejscu na stronie internetowej. Z powodów
-bezpieczeństwa zalecane jest, aby ograniczyć korzystanie ze skryptu do
-lokalnego adresu i ustawić autoryzację hasłem.
+wykorzystaniem skryptów control.php i dasm.php (który wymaga modułu
+obsługującego disassembler i tokenizer). Z powodów bezpieczeństwa
+zalecane jest, aby ograniczyć korzystanie ze skryptu do lokalnego
+adresu i ustawić autoryzację hasłem.
 
 Więcej informacji można znaleźć pod %{url}.
 
@@ -149,4 +149,7 @@ fi
 %dir %attr(750,root,http) %{_sysconfdir}
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/apache.conf
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf
-%{_appdir}
+%dir %{_appdir}
+%{_appdir}/PHP_Highlight.php
+%attr(640,root,http) %config(noreplace) %verify(not md5 mtime size) %{_appdir}/control.php
+%attr(640,root,http) %config(noreplace) %verify(not md5 mtime size) %{_appdir}/dasm.php

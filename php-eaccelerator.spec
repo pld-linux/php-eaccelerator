@@ -2,7 +2,7 @@
 %define		_name		eaccelerator
 %define		_pkgname	eaccelerator
 %define		_webapps	/etc/webapps
-%define		_webapp		%{name}
+%define		_webapp		%{_name}
 %define		_sysconfdir	%{_webapps}/%{_webapp}
 %define		_appdir		%{_datadir}/%{name}
 Summary:	eAccelerator module for PHP
@@ -67,8 +67,8 @@ Więcej informacji można znaleźć pod %{url}.
 %setup -q -n %{_pkgname}-%{version}
 
 cat > apache.conf <<EOF
-Alias /%{name} %{_appdir}
-<Directory /%{name}>
+Alias /%{_webapp} %{_appdir}
+<Directory /%{_appdir}>
 	Allow from 127.0.0.1
 </Directory>
 EOF

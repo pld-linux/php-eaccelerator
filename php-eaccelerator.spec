@@ -9,7 +9,7 @@ Release:	1
 Epoch:		0
 License:	GPL
 Group:		Libraries
-Source0:	http://bart.eaccelerator.net/source/0.9.5.1//%{_pkgname}-%{version}.tar.bz2
+Source0:	http://bart.eaccelerator.net/source/0.9.5.1/%{_pkgname}-%{version}.tar.bz2
 # Source0-md5:	d4759d444f55801762af963df6fca9ff
 Source1:	%{_name}.ini
 URL:		http://eaccelerator.net/

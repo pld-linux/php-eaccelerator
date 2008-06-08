@@ -4,13 +4,13 @@
 Summary:	eAccelerator module for PHP
 Summary(pl.UTF-8):	Moduł eAccelerator dla PHP
 Name:		php-%{_name}
-Version:	0.9.5.2
-Release:	3
+Version:	0.9.5.3
+Release:	1
 Epoch:		0
 License:	GPL
 Group:		Libraries
-Source0:	http://bart.eaccelerator.net/source/0.9.5.2/%{_pkgname}-%{version}.tar.bz2
-# Source0-md5:	7c44ee0bc5e7f74b7cb7f6360e015128
+Source0:	http://bart.eaccelerator.net/source/%{version}/%{_pkgname}-%{version}.tar.bz2
+# Source0-md5:	caf797223739516882f870342f74b935
 Source1:	%{_name}.ini
 URL:		http://eaccelerator.net/
 BuildRequires:	php-devel >= 3:5.0.0

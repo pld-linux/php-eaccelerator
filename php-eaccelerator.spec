@@ -4,7 +4,7 @@ Summary:	eAccelerator module for PHP
 Summary(pl.UTF-8):	Moduł eAccelerator dla PHP
 Name:		php-%{pkgname}
 Version:	0.9.5.3
-Release:	7
+Release:	8
 Epoch:		0
 License:	GPL
 Group:		Libraries
@@ -18,6 +18,7 @@ BuildRequires:	rpmbuild(macros) >= 1.344
 %requires_eq	php-common
 %{?requires_php_extension}
 Requires:	php-common >= 4:5.0.4
+Requires:	php-session
 Requires:	php-zlib
 Conflicts:	php-mmcache
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -35,9 +36,9 @@ eliminated.
 
 %description -l pl.UTF-8
 eAccelerator to dalsze stadium rozwoju akceleratora i kodera PHP
-mmcache. Zwiększa wydajność skryptów PHP poprzez zapamiętywanie
-ich w postaci skompilowanej, dzięki czemu narzut potrzebny na
-kompilację jest prawie całkowicie wyeliminowany.
+mmcache. Zwiększa wydajność skryptów PHP poprzez zapamiętywanie ich w
+postaci skompilowanej, dzięki czemu narzut potrzebny na kompilację
+jest prawie całkowicie wyeliminowany.
 
 %package webinterface
 Summary:	WEB interface for PHP Accelerator

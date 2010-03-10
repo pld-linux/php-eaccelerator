@@ -79,9 +79,6 @@ EOF
 phpize
 %configure \
 	--enable-eaccelerator=shared \
-	--with-eaccelerator-shared-memory \
-	--with-eaccelerator-sessions \
-	--with-eaccelerator-content-caching \
 	--with-eaccelerator-userid=http \
 	--with-php-config=%{_bindir}/php-config \
 	%{?debug:--with-eaccelerator-debug}
@@ -92,7 +89,6 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{php_extensiondir},%{_bindir},%{php_sysconfdir}/conf.d,/var/cache/%{pkgname},%{_sysconfdir},%{_appdir},/etc/tmpwatch}
 
 install modules/eaccelerator.so $RPM_BUILD_ROOT%{php_extensiondir}
-install encoder.php $RPM_BUILD_ROOT%{_bindir}
 install %{SOURCE1} $RPM_BUILD_ROOT%{php_sysconfdir}/conf.d/%{pkgname}.ini
 
 cp -a {PHP_Highlight,control,dasm}.php $RPM_BUILD_ROOT%{_appdir}
@@ -136,7 +132,6 @@ fi
 %config(noreplace) %verify(not md5 mtime size) %{php_sysconfdir}/conf.d/%{pkgname}.ini
 %config(noreplace) %verify(not md5 mtime size) /etc/tmpwatch/%{name}.conf
 %attr(755,root,root) %{php_extensiondir}/eaccelerator.so
-%attr(755,root,root) %{_bindir}/encoder.php
 %attr(770,root,http) /var/cache/%{pkgname}
 
 %files webinterface

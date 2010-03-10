@@ -12,11 +12,11 @@ Source0:	http://bart.eaccelerator.net/source/%{version}/%{pkgname}-%{version}.ta
 # Source0-md5:	85fa6150265a81f0cea852bc973382b9
 Source1:	%{pkgname}.ini
 URL:		http://eaccelerator.net/
-BuildRequires:	php-devel >= 3:5.0.0
+BuildRequires:	php-devel >= 3:5.1.0
 BuildRequires:	rpmbuild(macros) >= 1.344
 %requires_eq	php-common
 %{?requires_php_extension}
-Requires:	php-common >= 4:5.0.4
+Requires:	php-common >= 4:5.1.0
 Requires:	php-session
 Requires:	php-zlib
 Conflicts:	php-mmcache
@@ -87,17 +87,11 @@ phpize
 	%{?debug:--with-eaccelerator-debug}
 %{__make}
 
-cd eLoader
-./autogen.sh
-%configure
-%{__make}
-
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{php_extensiondir},%{_bindir},%{php_sysconfdir}/conf.d,/var/cache/%{pkgname},%{_sysconfdir},%{_appdir},/etc/tmpwatch}
 
 install modules/eaccelerator.so $RPM_BUILD_ROOT%{php_extensiondir}
-install eLoader/modules/eloader.so $RPM_BUILD_ROOT%{php_extensiondir}
 install encoder.php $RPM_BUILD_ROOT%{_bindir}
 install %{SOURCE1} $RPM_BUILD_ROOT%{php_sysconfdir}/conf.d/%{pkgname}.ini
 
@@ -138,11 +132,10 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README README.eLoader bugreport.php doc/php
+%doc AUTHORS ChangeLog NEWS README bugreport.php doc/php
 %config(noreplace) %verify(not md5 mtime size) %{php_sysconfdir}/conf.d/%{pkgname}.ini
 %config(noreplace) %verify(not md5 mtime size) /etc/tmpwatch/%{name}.conf
 %attr(755,root,root) %{php_extensiondir}/eaccelerator.so
-%attr(755,root,root) %{php_extensiondir}/eloader.so
 %attr(755,root,root) %{_bindir}/encoder.php
 %attr(770,root,http) /var/cache/%{pkgname}
 

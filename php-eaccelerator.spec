@@ -4,8 +4,7 @@ Summary:	eAccelerator module for PHP
 Summary(pl.UTF-8):	Moduł eAccelerator dla PHP
 Name:		php-%{pkgname}
 Version:	0.9.6
-Release:	1
-Epoch:		0
+Release:	2
 License:	GPL
 Group:		Libraries
 Source0:	http://bart.eaccelerator.net/source/%{version}/%{pkgname}-%{version}.tar.bz2
@@ -80,6 +79,7 @@ phpize
 %configure \
 	--enable-eaccelerator=shared \
 	--with-eaccelerator-userid=http \
+	--without-eaccelerator-use-inode \
 	--with-php-config=%{_bindir}/php-config \
 	%{?debug:--with-eaccelerator-debug}
 %{__make}

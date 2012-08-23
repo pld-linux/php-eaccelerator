@@ -4,7 +4,7 @@ Summary:	eAccelerator module for PHP
 Summary(pl.UTF-8):	Moduł eAccelerator dla PHP
 Name:		php-%{pkgname}
 Version:	0.9.6.1
-Release:	14
+Release:	15
 License:	GPL
 Group:		Libraries
 Source0:	http://bart.eaccelerator.net/source/%{version}/%{pkgname}-%{version}.tar.bz2
@@ -15,7 +15,7 @@ BuildRequires:	php-devel >= 3:5.1.0
 BuildRequires:	rpmbuild(macros) >= 1.344
 %requires_eq	php-common
 %{?requires_php_extension}
-Requires:	php-common >= 4:5.1.0
+Requires:	php(core) >= 5.1.0
 Requires:	php-session
 Requires:	php-zlib
 Conflicts:	php-mmcache

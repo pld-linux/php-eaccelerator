@@ -4,7 +4,7 @@ Summary:	eAccelerator module for PHP
 Summary(pl.UTF-8):	Moduł eAccelerator dla PHP
 Name:		php-%{pkgname}
 Version:	0.9.6.1
-Release:	24
+Release:	25
 License:	GPL
 Group:		Libraries
 Source0:	http://bart.eaccelerator.net/source/%{version}/%{pkgname}-%{version}.tar.bz2
@@ -45,6 +45,7 @@ Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	webapps
 Requires:	webserver(php)
+Conflicts:	apache-base < 2.4.0-1
 
 %description webinterface
 PHP Accelerator can be managed through web interface script
@@ -74,6 +75,13 @@ Alias /%{_webapp} %{_appdir}
 </Directory>
 EOF
 
+cat > httpd.conf <<EOF
+Alias /%{_webapp} %{_appdir}
+<Directory %{_appdir}/>
+	Require local
+</Directory>
+EOF
+
 %build
 phpize
 %configure \
@@ -93,7 +101,7 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{php_sysconfdir}/conf.d/%{pkgname}.ini
 
 cp -a {PHP_Highlight,control,dasm}.php $RPM_BUILD_ROOT%{_appdir}
 install apache.conf $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
-install apache.conf $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
+install httpd.conf $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
 
 echo "/var/cache/%{pkgname} 720" > $RPM_BUILD_ROOT/etc/tmpwatch/%{name}.conf
 
@@ -106,10 +114,10 @@ rm -rf $RPM_BUILD_ROOT
 %triggerun webinterface -- apache1 < 1.3.37-3, apache1-base
 %webapp_unregister apache %{_webapp}
 
-%triggerin webinterface -- apache < 2.2.0, apache-base
+%triggerin webinterface -- apache-base
 %webapp_register httpd %{_webapp}
 
-%triggerun webinterface -- apache < 2.2.0, apache-base
+%triggerun webinterface -- apache-base
 %webapp_unregister httpd %{_webapp}
 
 %post

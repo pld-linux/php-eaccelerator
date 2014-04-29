@@ -44,7 +44,6 @@ Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	webapps
 Requires:	webserver(php)
-Conflicts:	apache-base < 2.4.0-1
 
 %description webinterface
 PHP Accelerator can be managed through web interface script
@@ -71,13 +70,6 @@ Alias /%{_webapp} %{_appdir}
 <Directory %{_appdir}/>
 	Order allow,deny
 	Allow from 127.0.0.1
-</Directory>
-EOF
-
-cat > httpd.conf <<EOF
-Alias /%{_webapp} %{_appdir}
-<Directory %{_appdir}/>
-	Require local
 </Directory>
 EOF
 
@@ -113,10 +105,10 @@ rm -rf $RPM_BUILD_ROOT
 %triggerun webinterface -- apache1 < 1.3.37-3, apache1-base
 %webapp_unregister apache %{_webapp}
 
-%triggerin webinterface -- apache-base
+%triggerin webinterface -- apache < 2.2.0, apache-base
 %webapp_register httpd %{_webapp}
 
-%triggerun webinterface -- apache-base
+%triggerun webinterface -- apache < 2.2.0, apache-base
 %webapp_unregister httpd %{_webapp}
 
 %post

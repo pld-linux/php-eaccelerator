@@ -9,6 +9,7 @@ Group:		Libraries
 Source0:	http://bart.eaccelerator.net/source/%{version}/%{pkgname}-%{version}.tar.bz2
 # Source0-md5:	32ccd838e06ef5613c2610c1c65ed228
 Source1:	%{pkgname}.ini
+Source2:	apache.conf
 URL:		http://www.eaccelerator.net/
 BuildRequires:	php-devel >= 3:5.1.0
 BuildRequires:	rpmbuild(macros) >= 1.344
@@ -65,14 +66,6 @@ Więcej informacji można znaleźć pod %{url}.
 %prep
 %setup -q -n %{pkgname}-%{version}
 
-cat > apache.conf <<EOF
-Alias /%{_webapp} %{_appdir}
-<Directory %{_appdir}/>
-	Order allow,deny
-	Allow from 127.0.0.1
-</Directory>
-EOF
-
 %build
 phpize
 %configure \
@@ -91,8 +84,8 @@ install -p modules/eaccelerator.so $RPM_BUILD_ROOT%{php_extensiondir}
 cp -p %{SOURCE1} $RPM_BUILD_ROOT%{php_sysconfdir}/conf.d/%{pkgname}.ini
 
 cp -a {PHP_Highlight,control,dasm}.php $RPM_BUILD_ROOT%{_appdir}
-cp -p apache.conf $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
-cp -p httpd.conf $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
+cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
+cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
 
 echo "/var/cache/%{pkgname} 720" > $RPM_BUILD_ROOT/etc/tmpwatch/%{name}.conf
 

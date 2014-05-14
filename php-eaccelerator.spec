@@ -1,28 +1,28 @@
-%define		pkgname		eaccelerator
+%define		modname		eaccelerator
+%define		php_name	php%{?php_suffix}
 Summary:	eAccelerator module for PHP
 Summary(pl.UTF-8):	Moduł eAccelerator dla PHP
-Name:		php-%{pkgname}
+Name:		%{php_name}-%{modname}
 Version:	0.9.6.1
-Release:	29
+Release:	30
 License:	GPL
 Group:		Libraries
-Source0:	http://bart.eaccelerator.net/source/%{version}/%{pkgname}-%{version}.tar.bz2
+Source0:	http://bart.eaccelerator.net/source/%{version}/%{modname}-%{version}.tar.bz2
 # Source0-md5:	32ccd838e06ef5613c2610c1c65ed228
-Source1:	%{pkgname}.ini
+Source1:	%{modname}.ini
 Source2:	apache.conf
 URL:		http://www.eaccelerator.net/
-BuildRequires:	php-devel >= 3:5.1.0
+BuildRequires:	%{php_name}-devel >= 3:5.1.0
 BuildRequires:	rpmbuild(macros) >= 1.344
-%requires_eq	php-common
+%requires_eq	%{php_name}-common
 %{?requires_php_extension}
-Requires:	php(core) >= 5.1.0
-Requires:	php(session)
-Requires:	php(zlib)
+Requires:	%{php_name}-session
+Requires:	%{php_name}-zlib
 Conflicts:	php-mmcache
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_webapps	/etc/webapps
-%define		_webapp		%{pkgname}
+%define		_webapp		%{modname}
 %define		_sysconfdir	%{_webapps}/%{_webapp}
 %define		_appdir		%{_datadir}/%{_webapp}
 
@@ -64,7 +64,7 @@ adresu i ustawić autoryzację hasłem.
 Więcej informacji można znaleźć pod %{url}.
 
 %prep
-%setup -q -n %{pkgname}-%{version}
+%setup -q -n %{modname}-%{version}
 
 %build
 phpize
@@ -78,16 +78,16 @@ phpize
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{php_extensiondir},%{_bindir},%{php_sysconfdir}/conf.d,/var/cache/%{pkgname},%{_sysconfdir},%{_appdir},/etc/tmpwatch}
+install -d $RPM_BUILD_ROOT{%{php_extensiondir},%{_bindir},%{php_sysconfdir}/conf.d,/var/cache/%{modname},%{_sysconfdir},%{_appdir},/etc/tmpwatch}
 
 install -p modules/eaccelerator.so $RPM_BUILD_ROOT%{php_extensiondir}
-cp -p %{SOURCE1} $RPM_BUILD_ROOT%{php_sysconfdir}/conf.d/%{pkgname}.ini
+cp -p %{SOURCE1} $RPM_BUILD_ROOT%{php_sysconfdir}/conf.d/%{modname}.ini
 
 cp -a {PHP_Highlight,control,dasm}.php $RPM_BUILD_ROOT%{_appdir}
 cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
 cp -p %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
 
-echo "/var/cache/%{pkgname} 720" > $RPM_BUILD_ROOT/etc/tmpwatch/%{name}.conf
+echo "/var/cache/%{modname} 720" > $RPM_BUILD_ROOT/etc/tmpwatch/%{name}.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -125,16 +125,16 @@ fi
 %preun
 if [ "$1" = 0 ]; then
 	# remove last pieces of cache
-	rm -rf /var/cache/%{pkgname}/*
+	rm -rf /var/cache/%{modname}/*
 fi
 
 %files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README bugreport.php doc/php
-%config(noreplace) %verify(not md5 mtime size) %{php_sysconfdir}/conf.d/%{pkgname}.ini
+%config(noreplace) %verify(not md5 mtime size) %{php_sysconfdir}/conf.d/%{modname}.ini
 %config(noreplace) %verify(not md5 mtime size) /etc/tmpwatch/%{name}.conf
 %attr(755,root,root) %{php_extensiondir}/eaccelerator.so
-%attr(770,root,http) /var/cache/%{pkgname}
+%attr(770,root,http) /var/cache/%{modname}
 
 %files webinterface
 %defattr(644,root,root,755)

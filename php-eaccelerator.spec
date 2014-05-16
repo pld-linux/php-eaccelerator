@@ -4,7 +4,7 @@ Summary:	eAccelerator module for PHP
 Summary(pl.UTF-8):	Moduł eAccelerator dla PHP
 Name:		%{php_name}-%{modname}
 Version:	0.9.6.1
-Release:	30
+Release:	31
 License:	GPL
 Group:		Libraries
 Source0:	http://bart.eaccelerator.net/source/%{version}/%{modname}-%{version}.tar.bz2
@@ -18,6 +18,7 @@ BuildRequires:	rpmbuild(macros) >= 1.344
 %{?requires_php_extension}
 Requires:	%{php_name}-session
 Requires:	%{php_name}-zlib
+Obsoletes:	php-eaccelerator < 0.9.6.1-30
 Conflicts:	php-mmcache
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -42,9 +43,13 @@ jest prawie całkowicie wyeliminowany.
 Summary:	WEB interface for PHP Accelerator
 Summary(pl.UTF-8):	Interfejs WWW dla PHP Acceleratora
 Group:		Libraries
-Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	%{name} = %{version}-%{release}
 Requires:	webapps
 Requires:	webserver(php)
+Obsoletes:	php-eaccelerator-webinterface < 0.9.6.1-30
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description webinterface
 PHP Accelerator can be managed through web interface script

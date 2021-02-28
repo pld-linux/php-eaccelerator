@@ -47,9 +47,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	webapps
 Requires:	webserver(php)
 Obsoletes:	php-eaccelerator-webinterface < 0.9.6.1-30
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description webinterface
 PHP Accelerator can be managed through web interface script
